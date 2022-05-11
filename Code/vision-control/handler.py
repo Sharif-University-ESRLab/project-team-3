@@ -1,8 +1,10 @@
+from datetime import datetime
 import numpy as np
 import handdetector as htm
 import time
 import pyautogui
 import cv2
+
  
 wCam, hCam = 640, 480 # hatam webcam resuloution
 frameR = 120
@@ -17,6 +19,8 @@ mouseDown = False
 clicked = False
 rclicked = False
 last_pos_scroll = -1
+
+last_ss = time.time_ns()
  
 cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
@@ -74,7 +78,7 @@ while True:
     if fingers == [1,1,0,0,0]:
         length, img, lineInfo = detector.findDistance(4, 8, img)
         print(length)
-        # 10. Click mouse if distance short
+        # 10. pinch
         if length < 30 and not mouseDown:
             cv2.circle(img, (lineInfo[4], lineInfo[5]),
             15, (255, 0, 0), cv2.FILLED)
@@ -112,6 +116,11 @@ while True:
                 last_pos_scroll = pos
     else:
         last_pos_scroll = -1
+
+    if fingers == [1,0,0,0,1]:
+        if time.time_ns() - last_ss > 1_000_000_000:
+            last_ss = time.time_ns()
+            pyautogui.press("prtsc")
 
     # 11. Frame Rate
     cTime = time.time()
