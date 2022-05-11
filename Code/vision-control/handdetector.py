@@ -21,11 +21,11 @@ class HandDetector:
         self.results = self.hands.process(imgRGB)
         # print(self.results.multi_hand_landmarks)
 
-        if self.results.multi_hand_landmarks:
-            for handLms in self.results.multi_hand_landmarks:
-                if draw:
+        if draw:
+            if self.results.multi_hand_landmarks:
+                for handLms in self.results.multi_hand_landmarks:
                     self.mp_drawing.draw_landmarks(img, handLms,
-                                               self.mp_hands.HAND_CONNECTIONS)
+                                                self.mp_hands.HAND_CONNECTIONS)
 
         return img
 
@@ -43,7 +43,7 @@ class HandDetector:
                 xList.append(cx)
                 yList.append(cy)
                 # print(id, cx, cy)
-                self.lmList.append([id, cx, cy])
+                self.lmList.append([id, cx, cy, lm.z])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
 
@@ -58,8 +58,8 @@ class HandDetector:
         return self.lmList, bbox
 
     def findDistance(self, p1, p2, img, draw=True, r=15, t=3):
-        x1, y1 = self.lmList[p1][1:]
-        x2, y2 = self.lmList[p2][1:]
+        x1, y1 = self.lmList[p1][1:3]
+        x2, y2 = self.lmList[p2][1:3]
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
 
         if draw:

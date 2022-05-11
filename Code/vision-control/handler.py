@@ -13,6 +13,10 @@ pyautogui.PAUSE = 0.02
 pTime = 0
 plocX, plocY = 0, 0
 clocX, clocY = 0, 0
+mouseDown = False
+clicked = False
+rclicked = False
+last_pos_scroll = -1
  
 cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
@@ -29,8 +33,8 @@ while True:
     lmList, bbox = detector.findPosition(img)
     # 2. Get the tip of the index and middle fingers
     if len(lmList) != 0:
-        x1, y1 = lmList[8][1:]
-        x2, y2 = lmList[12][1:]
+        x1, y1 = lmList[8][1:3]
+        x2, y2 = lmList[12][1:3]
         # print(x1, y1, x2, y2)
     
     # 3. Check which fingers are up
@@ -53,16 +57,62 @@ while True:
         plocX, plocY = clocX, clocY
         
     # 8. Both Index and middle fingers are up : Clicking Mode
-    if fingers[1] == 1 and fingers[2] == 1:
+    if fingers == [0,1,1,0,0]:
         # 9. Find distance between fingers
         length, img, lineInfo = detector.findDistance(8, 12, img)
         print(length)
         # 10. Click mouse if distance short
-        if length < 40:
+        if length < 30:
             cv2.circle(img, (lineInfo[4], lineInfo[5]),
             15, (0, 255, 0), cv2.FILLED)
-            pyautogui.click()
+            if not clicked:
+                pyautogui.click()
+                clicked = True
+        else:
+            clicked = False
     
+    if fingers == [1,1,0,0,0]:
+        length, img, lineInfo = detector.findDistance(4, 8, img)
+        print(length)
+        # 10. Click mouse if distance short
+        if length < 30 and not mouseDown:
+            cv2.circle(img, (lineInfo[4], lineInfo[5]),
+            15, (255, 0, 0), cv2.FILLED)
+            pyautogui.mouseDown()
+            mouseDown = True
+
+        if length > 35 and mouseDown:
+            pyautogui.mouseUp()
+            mouseDown = False
+
+    if fingers == [1,1,1,0,0]:
+        # Right click mode
+        length, img, lineInfo = detector.findDistance(8, 12, img)
+        print(length)
+        # 10. Click mouse if distance short
+        if length < 30:
+            cv2.circle(img, (lineInfo[4], lineInfo[5]),
+            15, (0, 0, 255), cv2.FILLED)
+            if not rclicked:
+                pyautogui.rightClick()
+                rclicked = True
+        else:
+            rclicked = False
+        
+    if fingers == [0,1,1,1,0]:
+        # scroll mode
+        pos = np.interp(y1, (frameR, hCam - frameR), (0, hScr))
+        if last_pos_scroll == -1:
+            last_pos_scroll = pos
+        else:
+            if abs(last_pos_scroll - pos) > 10:
+                clicks = int((last_pos_scroll - pos))
+                print(clicks)
+                pyautogui.scroll(clicks)
+                last_pos_scroll = pos
+    else:
+        last_pos_scroll = -1
+
     # 11. Frame Rate
     cTime = time.time()
     fps = 1 / (cTime - pTime)
