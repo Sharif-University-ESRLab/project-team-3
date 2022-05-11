@@ -108,7 +108,7 @@ while True:
             if abs(last_pos_scroll - pos) > 10:
                 clicks = int((last_pos_scroll - pos))
                 print(clicks)
-                pyautogui.scroll(clicks)
+                pyautogui.scroll(-clicks)
                 last_pos_scroll = pos
     else:
         last_pos_scroll = -1
