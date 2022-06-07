@@ -16,7 +16,7 @@ class HandDetector:
         self.mp_drawing = mp.solutions.drawing_utils
         self.tipIds = [4, 8, 12, 16, 20]
 
-    def findHands(self, img, draw=True):
+    def findHands(self, img, draw=False):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(imgRGB)
         # print(self.results.multi_hand_landmarks)
@@ -29,7 +29,7 @@ class HandDetector:
 
         return img
 
-    def findPosition(self, img, handNo=0, draw=True):
+    def findPosition(self, img, handNo=0, draw=False):
         xList = []
         yList = []
         bbox = []
@@ -57,7 +57,7 @@ class HandDetector:
 
         return self.lmList, bbox
 
-    def findDistance(self, p1, p2, img, draw=True, r=15, t=3):
+    def findDistance(self, p1, p2, img, draw=False, r=15, t=3):
         x1, y1 = self.lmList[p1][1:3]
         x2, y2 = self.lmList[p2][1:3]
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
@@ -73,26 +73,23 @@ class HandDetector:
 
     def fingersUp(self):
         fingers = []
-        # Thumb
-        #print(self.lmList)
-        #print(self.tipIds)
 
         if not self.lmList:
             return [0]*5
-        
+
         if self.lmList[self.tipIds[0]][1] > self.lmList[self.tipIds[0] - 1][1]:
             fingers.append(1)
         else:
             fingers.append(0)
- 
+
         # Fingers
         for id in range(1, 5):
- 
+
             if self.lmList[self.tipIds[id]][2] < self.lmList[self.tipIds[id] - 2][2]:
                 fingers.append(1)
             else:
                 fingers.append(0)
- 
+
         # totalFingers = fingers.count(1)
- 
+
         return fingers
