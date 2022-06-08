@@ -1,6 +1,11 @@
 \documentclass{article}
 \usepackage[persian, group]{hw}
 
+\geometry{
+ a4paper,
+ total={5in,7in}
+ }
+ 
 \title{گزارش نهایی}
 \semester{نیم‌سال دوم ۰۰-۰۱}
 \course{آز سخت‌افزار - گروه ۳}
@@ -10,44 +15,33 @@
 \addauth{امیرمحمد عیسی‌زاده}{amirmohammadisazadeh@gmail.com}{98106807}
 \addauth{*محمدحسین قیصریه}{mgheysariyeh@gmail.com}{97106238}
 
-\usepackage{color}
-\definecolor{darkred}{rgb}{0.6,0.0,0.0}
-\definecolor{darkgreen}{rgb}{0,0.50,0}
-\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
-\definecolor{orange}{rgb}{0.99,0.48,0.13}
-\definecolor{grass}{rgb}{0.18,0.80,0.18}
-\definecolor{pink}{rgb}{0.97,0.15,0.45}
+\usepackage{xcolor}
 
-% General Setting of listings
-\lstset{
-  aboveskip=1em,
-  breaklines=true,
-  abovecaptionskip=-6pt,
-  captionpos=b,
-  escapeinside={\%*}{*)},
-  frame=single,
-  numbers=left,
-  numbersep=15pt,
-  numberstyle=\tiny,
-}
-% 0. Basic Color Theme
-\lstdefinestyle{colored}{ %
-  basicstyle=\ttfamily,
-  backgroundcolor=\color{white},
-  commentstyle=\color{green}\itshape,
-  keywordstyle=\color{blue}\bfseries\itshape,
-  stringstyle=\color{red},
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
 }
 
-% 1. General Python Keywords List
-\lstdefinelanguage{PythonPlus}[]{Python}{
-  morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,} % Python builtin
-  morekeywords=[2]{,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,}, % magic methods
-  morekeywords=[3]{,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr,}, % common functions
-  morekeywords=[4]{,Exception,NameError,IndexError,SyntaxError,TypeError,ValueError,OverflowError,ZeroDivisionError,}, % errors
-  morekeywords=[5]{,ode,fsolve,sqrt,exp,sin,cos,arctan,arctan2,arccos,pi, array,norm,solve,dot,arange,isscalar,max,sum,flatten,shape,reshape,find,any,all,abs,plot,linspace,legend,quad,polyval,polyfit,hstack,concatenate,vstack,column_stack,empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze,}, % numpy / math
-}
-
+\lstset{style=mystyle}
 
 \begin{document}
 
@@ -90,7 +84,7 @@
  
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.1]{./graphics/rpi3b.jpg}
+	\includegraphics[scale=0.09]{./graphics/rpi3b.jpg}
 	\caption{برد رزبری‌پای}
 	\label{RPi3}
 \end{figure}
@@ -128,7 +122,7 @@
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.6]{./graphics/cam.jpg}
+	\includegraphics[scale=0.3]{./graphics/cam.jpg}
 	\caption{دوربین \lr{OVA5647}}
 	\label{cam}
 \end{figure}
@@ -157,7 +151,7 @@
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5]{./graphics/usb.jpg}
+	\includegraphics[scale=0.3]{./graphics/usb.jpg}
 	\caption{ماژول \lr{TTL-USB}}
 	\label{usb}
 \end{figure}
@@ -175,17 +169,54 @@
  \end{itemize}
 
 \subsection{بسته‌بندی محصول}
-برای بسته‌بندی این محصول برای استفاده حداکثری از فضا و 
+برای بسته‌بندی این محصول برای استفاده حداکثری از فضا و زیبایی و شکیل بودن محصول نهایی تصمیم
+گرفته شده است تا بسته‌بندی محصول توسط پرینترهای سه‌بعدی تهیه شوند. این شکل بسته‌بندی به این دلیل که انعطاف‌پذیری زیادی برای طراح دارد می‌تواند طرح‌های زیبا و چشم‌نوازی را خلق کند و باعث
+افزایش فروش محصول به خاطر ظاهر زیبا شود. البته این روش (پرینتر سه‌بعدی) برای تعداد بالای
+محصول پاسخگو نیست و در صورتی که تولید انبود صورت بگیرد با استفاده از قالب، و پالیش نهایی
+می‌توان با سرعت بالاتری به همان نتیجه رسید با این هزینه که تهیه تجهیزات مورد نیاز برای این
+کار بسیار بالاتر خواهد بود. در اصل پرینترهای سه‌بعدی اکثرا برای طرح اولیه استفاده می‌شوند.
 
 \section{نحوه پیکر‌بندی سخت‌افزار}
-\subsection{دیاگرام سخت‌افزاری}
+\subsection{دیاگرام سیستم}
+در شکل \ref{chart} دیاگرام کلی طرز کار سیستم‌ آمده است. روند کلی کار به این صورت است که
+ابتدا تصویر از محیط اطراف گرفته \footnote{\lr{Capture}} می‌شود. سپس با استفاده از رابط \lr{CSI} به واحد پردازشی منتقل می‌شود. زمانی که تصویر در واحد پردازشی دریافت شد مدل هوش
+مصنوعی که از قبل تمرین‌داده \footnote{\lr{train}} شده است روی تصویر پردازش انجام می‌دهد که
+نتیجه آن تشخیص محل دست‌ها و نقاط عطف آن است. پس از آن، این نقاط عطف تفسیر می‌شوند و نتیجه با
+استفاده از رابط سریال به رایانه مقصد منتقل می‌شود و از آنجا با استفاده از درایورش  تفسیر
+نهایی و تبدیل به حرکات موشواره روی آن صورت می‌گیرد.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./graphics/chart.jpg}
+	\caption{دیاگرام سیستم}
+	\label{chart}
+\end{figure}
+
 
 \subsection{پیکربندی}
+پیکربندی نرم‌افزاری شامل دو مورد است. اول اتصال دوربین به برد که با استفاده از یک کابل صاف
+\footnote{\lr{flat}} انجام می‌گیرد.  (شکل \ref{cam-cable})
 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{./graphics/cam-cable.jpg}
+	\caption{اتصال دوربین رزبری‌پای}
+	\label{cam-cable}
+\end{figure}
 
+پیکربندی ماژول \lr{TTL} نیز به این صورت انجام میگیرد که پایه‌های \lr{TX, RX} به صورت برعکس به مشابهشان در رزبری وصل می‌شوند و همچنین پایه‌ زمین \footnote{\lr{GND, Ground}} به زمین برد
+متصل می‌شود تا زمین‌ها مشترک باشند. البته بنا بر این بود تا سیم قدرت نیز به برد متصل شود و
+قدرت مورد نیاز برد از طریق درگاه \lr{USB} لپ‌تاپ تامین شود اما با توجه به معیوب بودن ماژول
+خریداری شده و انتقال قدرت نامناسب و ناامن و غیرقابل اعتماد \footnote{\lr{unreliable}}
+تصمیمم بر این شد که توان مورد نیاز برد به صورت مستقیم از طریق منبع توان تامین شود.
+پیکربندی این ماژول در شکل \ref{ttl-conf} قابل مشاهده است.
 
-\section{نحوه پیاده‌سازی فیزیکی}
-
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{./graphics/ttl-conf.png}
+	\caption{اتصال ماژول سریال}
+	\label{ttl-conf}
+\end{figure}
 
 \section{نحوه پیاده‌سازی نرم افزاری}
 در ابتدا از تصمیم بر استفاده از ماژول های نوشته شده و آماده بود ولی بعد از تست کردن برخی از آن‌ها و کارکرد نامطلوبشان، تصمیم گرفتیم که این ماژول ها را خودمان طراحی کنیم.
@@ -219,7 +250,7 @@
 هم‌اکنون به توابع این فایل می‌پردازیم و کارکرد آنها را با هم بررسی می‌کنیم.
 
 \begin{latin}
-\begin{lstlisting}
+\begin{lstlisting}[language=python]
 def findHands(self, img, draw=False):
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     self.results = self.hands.process(imgRGB)
@@ -236,7 +267,7 @@ def findHands(self, img, draw=False):
 این تابع برای پیدا کردن دست(ها) استفاده می‌شود، به طوری تصویر گرفته شده از وبکم را دریافت می‌کند سپس آن را به صورت یک عکس \lr{cv2} در می‌آورد و در نهایت این عکس را به تابع \lr{mediapipe.hands.process} می‌دهد، که نتیجه آن آبجکت های دست ها است که در متغیر \lr{hands} ذخیره می‌شوند و اگر مقدار متغیر \lr{draw} برابر با \lr{True} باشد، جای دست و ... را روی تصویر می‌کشد.
 
 \begin{latin}
-\begin{lstlisting}
+\begin{lstlisting}[language=python]
 def findPosition(self, img, handNo=0, draw=False):
     xList = []
     yList = []
@@ -270,7 +301,7 @@ def findPosition(self, img, handNo=0, draw=False):
 این تابع برای ذخیره سازی جایگاه نقطه های مورد نظر است. به این شکل که این نقاط را در متغیر های \lr{XList} و \lr{YList} که لیست هستند می‌ریزد. و در نهایت اگر متغیر \lr{draw} برابر با \lr{True} باشد دور دست یک مستطیل می‌کشد یا به عبارتی محدوده آن را معلوم می‌کند. محدوده دست به این شکل است که پایین ترین و بالاترین  \lr{x }ها و \lr{y} ها را ذخیره می‌کند و از هر ظرف 20 پیکسل حاشیه می‌دهد تا به خوبی معلوم شود.
 
 \begin{latin}
-\begin{lstlisting}
+\begin{lstlisting}[language=python]
 def findDistance(self, p1, p2, img, draw=False, r=15, t=3):
     x1, y1 = self.lmList[p1][1:3]
     x2, y2 = self.lmList[p2][1:3]
@@ -302,11 +333,35 @@ def findDistance(self, p1, p2, img, draw=False, r=15, t=3):
 
 \begin{itemize}
 	\item حالت حرکت:
-	این حالت زمانی رخ می‌دهد که فقط انگشت اشاره بالا باشد و انگشت وسط پایین باشد، در این صورت به حالت حرکت می‌رویم و در این حالت هر جا که نوک انگشت اشاره برود، به نقطه ای در صفحه نمایشگر نگاشت می‌شود.
+	این حالت زمانی رخ می‌دهد که فقط انگشت اشاره بالا باشد و انگشت وسط پایین باشد، در این صورت به حالت حرکت می‌رویم و در این حالت هر جا که نوک انگشت اشاره برود، به نقطه ای در صفحه 
+	نمایشگر نگاشت می‌شود.
+\begin{latin}
+\begin{lstlisting}[language=python]
+		# 4. Only Index Finger : Moving Mode
+    		if fingers[1] == 1 and fingers[2] == 0:
+        	# 7. Move Mouse
+        	ser.write (b"v*%d*%d\n"%(x1,y1))
+\end{lstlisting}
+\end{latin}
 	
 	\item حالت کلیک دوتایی:
 	این حالت زمانی است که هر دو انگشت اشاره و وسط بالا باشند، به این حالت می‌رویم. به این صورت که وقتی هر دو بالا می‌روند کار دیگری نمی‌توانیم بکنیم و به عبارتی نمی‌توانیم نشانگر را تکان دهیم، تا زمانی که یا از این حالت بیرون بیاییم یا اینکه دو تا انگشت را به هم نزدیک کنیم و اگر فاصله از 15 پیکسل کمتر شد، دابل کلیک انجام می‌شود.
 	
+\begin{latin}
+\begin{lstlisting}[language=python]
+if fingers == [0,1,1,0,0]:
+    print('dclick-mode')
+    # 9. Find distance between fingers
+    length, img, lineInfo = detector.findDistance(8, 12, img)
+    # 10. Click mouse if distance short
+    if length < 15:
+        if not dclicked:
+            ser.write(b"d\n")
+            dclicked = True
+    else:
+        dclicked = False
+\end{lstlisting}	
+\end{latin}
 	\item حالت کلیک تکی:
 	این حالت زمانی است که انگشت اشاره و دو انگشت وسط بالا باشند، سپس اگر فاصله انگشت اشاره و انگشت وسط کمتر از 15 پیکسل شد، چپ کلیک اتفاق می‌افتد و مقدار \lr{clicked} هم \lr{True} می‌شود و در غیر این صورت مقدار آن \lr{False} می‌شود.	
 	
@@ -320,8 +375,223 @@ def findDistance(self, p1, p2, img, draw=False, r=15, t=3):
 	\item حالت اسکرول:
 	این حالت زمانی اتفاق می‌افتد که تمامی انگشت ها بجز شست بالا باشند به حالت اسکرول می‌رویم. حال اگر دستمان را بالا رویم، اسکرول پایین اتفاق می‌افتد و اگر دستمان را پایین ببریم، اسکرول بالا اتفاق می‌افتد(مثل صفحه تاچ لپ‌تاپ که وقتی به بالا دستمان را می‌بریم، صفحه پایین می‌آید و وقتی پایین می‌بریم، بالا می‌رود.)
 	
+\begin{latin}
+\begin{lstlisting}[language=python]
+if fingers == [0,1,1,1,1]:
+    # scroll mode
+    pos = y1
+    if last_pos_scroll == -1:
+        last_pos_scroll = pos
+    else:
+        if abs(last_pos_scroll - pos) > 10:
+            clicks = int((last_pos_scroll - pos))
+            ser.write (b"s*%d\n"%(clicks))
+            last_pos_scroll = pos
+\end{lstlisting}	
+\end{latin}
+	
+	
+	\item اسکرین‌شات:
+	با باز کردن انگشت کوچک و انگشت شصت و بستن باقی انگشتان این حالت فعال می‌شود. برای جلوگیری از اسکرین شات گرفتن مداوم فاصله زمانی یک ثانیه‌ای بین هر دستور اسکرین شات قرار گرفته است.
+	
+\begin{latin}
+\begin{lstlisting}[language=python]
+if fingers == [1,0,0,0,1]:
+    if time.time_ns() - last_ss > 1_000_000_000:
+        last_ss = time.time_ns()
+        ser.write (b"p\n")
+\end{lstlisting}	
+\end{latin}
 	
 \end{itemize}
+
+\subsection{درایور}
+درایور آن بخشی از از قسمت نرم‌افزاری است که در سمت رایانه مقصد اجرا می‌شود. در موضوعی که ما از آن استفاده می‌کنیم درایور ابتدا به رابط سریال محصول متصل می‌شود. سپس ارتباطی را با آن آغاز کرده و اگر ارتباط امکان پذیر باشد دستورات را از آن می‌خواند و عملیات‌های لازم را به سیستم‌عامل اعلام می‌ کند. 
+
+درایور مورد استفاده ما از دو فرآیند \footnote{\lr{Process}} کلی تشکیل شده است:
+
+\begin{itemize}
+	\item \lr{Interpreter}: این بخش مربوط به گرفتن و خواندن دستورات و اعمال تغییرات لازم بر سیستم‌عامل است.
+	در این قسمت پس از اینکه دستورات از سریال که توسط ویژوالایزر انتخاب شده است (توضیح در بعد) یک خط از دستورات را خواند ابتدا چک می‌کند که فرمت ارسالی دستور درست باشد و داده‌های اشتباهی فرستاده نشده‌باشد. سپس اگر فرمت دستور با فرمت دستوراتی که برای برنامه تعریف شده است هم‌خوانی داشته باشد، با توجه به نوع دستور (اولین بایتی که ارسال می‌شود) به صورت داینامیک تابع مربوط به آن انتخاب می‌شود و پارامترهایی (یک یا چند عدد صحیح) که با آن ارسال شده است به تابع پاس داده می‌شود تا عملیات‌های خود را انجام دهد.
+	
+	عملیات‌های انجام شده توسط کتابخانه
+	\verb~pyautogui~ انجام می‌شود که امکان فرستادن دستورات موشواره و کیبورد را به سیستم‌عامل دارد البته برای اینکه بتوان از این کلیک‌ها و ... روی قسمت‌های امنتیتی ویندوز نیز استفاده کرد باید درایور به صورت \lr{Administrator} اجرا شود. \cite{gui-osk}
+	
+	خلاصه کدی که در این بخش اجرا می‌شود به شرح زیر است:
+\begin{latin}
+\begin{lstlisting}[language=python]
+def get_command():
+    # wait till a new command is received
+    command = get_serial_line()
+    if command:
+        for pattern in patterns:
+            # search in the patterns if the command exists or not
+            x = re.search(pattern, command)
+            if x:
+                # seperate command and its parameters
+                x = list(x.groups())
+                return x[0], x[1:]
+        return None, None
+    else:
+        # sleep to prevent busy waiting until a serial is connected
+        time.sleep(0.5)
+        return None, None
+
+
+def interpret(command: str, params: list):
+    # finds corresponding handler of the command and do the command
+    globals()["do_"+command](params)
+
+def start():
+    global visualizer
+    visualizer = Visualizer()
+    visualizer.start()
+    while True:
+        try:
+            # get command from serial
+            command, params = get_command()
+            if command:
+                # interprate command
+                interpret(command, params)
+        except Exception as e:
+            # log bad habits
+            logger.log(3, str(e))
+\end{lstlisting}	
+\end{latin}
+
+تابع \verb~interpret~ به این صورت کار می‌کند که از سیمبل‌هایی که به صورت جهانی در اسکریپت
+تعریف شده است آن سمبلی که با
+\verb~do_~
+آغاز می‌شود و پایانش با نام کانمند ما است (توابع متناسب در فایل تعریف شده‌اند) را انتخاب و پاس دادن پارامترها اجرا کن.
+
+لیست دستوراتی که درایور از آن پشتیبانی می‌کند نیز به صورت زیر است:
+\begin{latin}
+\begin{lstlisting}[language=python]
+# patterns send from RPi
+patterns = [
+    "^(b)[*]([-]?\d+)[*]([-]?\d+)[*]([-]?\d+)[*]([-]?\d+)$",
+    "^(v)[*]([-]?\d+)[*]([-]?\d+)$",
+    "^(d)$",
+    "^(md)$",
+    "^(mu)$",
+    "^(c)$",
+    "^(r)$",
+    "^(s)[*]([-]?\d+)$",
+    "^p$"
+]
+\end{lstlisting}	
+\end{latin}
+	
+	\item \lr{Visualizer}: این بخش مسئول نشان‌دادن تفاسیر برنامه از حرکات کاربر به صورت گرافیکی و فراهم کردن ساز و کاری برای انتخاب پورت دستگاه است که البته در حال حاضر ساختار گرافیکی ساده‌ای دارد. به خاطر طویل بودن کدهای مربوط به \lr{GUI}/ از آوردن آنها خودداری شده است اما کدها به صورت کامل کامنت‌گذاری شده‌اند. تصویری از این رابط کاربری در شکل \ref{gui}
+	آمده است.
+	این رابط کاربری در زمان اجرا در گوشه بالا سمت راست است و برای اینکه کاربر بتواند تمام محتوای صحفه را ببیند به صورت محو در صفحه ظاهر می‌شود که البته توسط کاربر قابل جابجایی است و با درگ اند دراپ در هر جای صفحه می‌تواند قرار بگیرد. این نمایشگر همیشه روی برنامه‌های دیگر قرار می‌گیرد و زیر صفحه دیگری نمی‌رود. برای بستن آن نیز کافی‌است تا با راست کلیک روی آن از منوی مربوط گزینه \lr{Exit}  انتخاب شود.
+	
+	دارای یک کادر قرمز‌رنگ است که نشان‌دهنده صفحه کاربر (با اندازه دوربین) است. مستطیل سیاه (که در شکل مشخص نیست) نشان‌دهنده حدود دست است و دایره آبی رنگ نشان‌دهنده نوک انگشت سبابه کاربر است. در بالاترین بخش آن نیز یک منوی کشویی \footnote{\lr{Drop Down Menu}}
+قرار دارد که در هربار باز کردن این منو لیستی از پورت‌های سریال متصل به رایانه به کاربر
+نمایش داده می‌شود که کاربر باید پورت مربوط به محصول را از بین آن انتخاب کند.
+
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5]{./graphics/driver.jpg}
+		\caption{نمایی از ویژوالایزر درایور}
+		\label{gui}
+	\end{figure}
+	
+\end{itemize}
+
+\section{پیکربندی سیستم}
+در این بخش به پیکر‌بندی‌هایی لازم برای سیستم (هم برد و هم رایانه مقصد)‌ می‌پردازیم.
+
+\subsection{پیکربندی رسبپری‌پای}
+\subsubsection{نصب سیستم‌عامل ۶۴بیتی}
+برای اینکه بتوانیم از کتابخانه مدیاپایپ بر روی بردهای رزبری پای استفاده کنیم باید این برد به صورت ویژه پیکربندی بشود چراکه این کتابخانه برای سیستم‌عامل‌های ۳۲ بیتی توسعه نیافته است و در صورت نیاز برای استفاده از آنها کاربر باید خود این کتابخانه را بسازد\footnote{\lr{Build}}.
+
+برای ساختن این کتابخانه به ابزار \lr{Bazel} نیاز است که برای نصب آن روی برد‌های رزبری‌پای به حداقل ۱۶ گیگابایت حافظه نیاز است که با توجه به اینکه حافظه فعلی ما یک \lr{SD} ۸ گیگابایتی است این کار مقدور نبود و پس از چندین بار تلاش، به نتیجه‌ای نرسید.
+
+برای همین باید یک سیستم‌عامل ۶۴ بیتی (که خوشبختانه چند ماهی ‌است برای بردهای رزبری‌پای توسعه‌ یافته است) استفاده کنیم. برای این کار باید تصویر \footnote{\lr{Image - iso file}} مربوط به این سیستم‌عامل روی \lr{SD} کارت نوشته شود که بهترین گزینه برای انجام این کار نرم‌افزار رسمی رسپبری‌پای یعنی \lr{Raspberry Pi Imager} است. پس از انتخاب نسخه ۶۴ بیتی و درایو مورد نظر، این نرم‌افزار سیستم‌عامل را از منابع معتبر دانلود کرده و آن را روی کارت حافظه تصویر می‌کند (شکل \ref{RPi Imager}).
+
+همچنین این نرم‌افزار کانفیگ‌های لازم برای راه‌اندازی برد به صورت \lr{Headless} را نیز در اختیار ما قرار می‌دهد. این کار با استفاده از پیکربندی اتصال وای‌فای و فعال‌سازی سرویس \lr{SSH} امکان‌پذیر است.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./graphics/rpiimager.jpg}
+	\caption{\lr{Raspberry Pi Imager}}
+	\label{RPi Imager}
+\end{figure}
+
+شکل \ref{64} نشان‌دهنده موفقیت‌آمیز بودن این عملیات است.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./graphics/64.jpg}
+	\caption{سیستم‌عامل ۶۴ بیتی}
+	\label{64}
+\end{figure}
+
+\subsection{نصب‌کتابخانه‌های لازم}
+پس از اینکه سیستم‌عامل به خوبی پیکربندی شد، باید کتابخانه‌هایی که سرویس تشخیص حرکات دست به آن نیاز دارد را نصب کرد. این کتابخانه‌ها به وسیله دستور
+\verb~pip~
+قابل نصب هستند:
+\begin{latin}
+    \begin{itemize}
+        \item NumPy
+        \item OpenCV
+        \item OpenCV-ControlLib
+        \item ffmpeg
+        \item MediaPipe
+        \item MediaPipe-Hands-Solution
+        \item PySerial
+    \end{itemize}
+\end{latin}
+
+\subsubsection{راه‌اندازی سرویس تشخیص حرکات دست}
+ما نمی‌تونیم همانند زمانی که به رفع باگ پروژه مشغولیم با استفاده از سرویس \lr{SSH}
+اسکریپت پایتون را راه‌اندازی کنیم. به همین دلیل باید این کار را به صورت یک سرویس در بیاوریم
+تا هر بار در ابتدای روش شدن رزبری به صورت خودکار به آن متصل شود.
+
+برای این کار فایل
+\verb~/etc/rc.local~
+را به شکل زیر آپدیت می‌کنیم:
+\begin{latin}
+\begin{lstlisting}[language=bash]
+sudo -E python ~/scripts/handler.py &
+exit 0
+\end{lstlisting}	
+\end{latin}
+
+با این کار اسکریپت مورد نظر در زمان بالاآمدن سیستم‌عامل به صورت دسترسی ادمین و با دسترسی به
+محیط \footnote{\lr{Enviroment}} کاربر اصلی (که روی آن کتابخانه‌ها نصب شده اند) اجرا می‌شود.
+با قرمز ممتد شدن چراغ دوربین متوجه می‌شویم که این سرویس به صورت کامل آغاز شده است و از آن به بعد قابل استفاده و در حال فرستادن دستورات به رابط سریال است.
+
+\subsection{پیکربندی رایانه مقصد}
+علاوه بر کارهایی که روی برد رسبپری‌پای باید صورت بگیرد، رایانه‌های مقصد نیز برای ارتباط قابل اطمینان و پایدار باید پیکربندی شوند.
+\subsubsection{پیکربندی رابط سریال}
+اولین گام برای پیکر‌بندی رابط سریال روی سیستم مقصد نصب درایور ماژول سریال به شماره
+\lr{PL2303HX} \cite{ttl} است. نصب این درایور برای برقراری ارتباط سریال الزامی است که البته می‌تواند
+به صورت پک نرم‌افزاری همراه با درایور اصلی برنامه به مشتری عرضه شود. این درایور باعث می‌شود
+تا ماژول و داده‌های ارسالی آن در رایانه مقصد به درستی تشخیص داده شود.
+
+پس از نصب این درایور، رابط \footnote{\lr{Interface}} سریال باید پیکر‌بندی شود تا تنظیمات
+یکسانی با برد داشته باشد تا این ارتباط برقرار باشد. برد برای برقراری امن از نرخ انتقال
+\footnote{\lr{Baud Rate}} ۹۶۰۰ استفاده می‌کند. اطلاعت به صورت یک بایتی (هشت بیت) ارسال می شوند. بیتی که نشان‌دهنده پایان ارتباط است ۱ است و همچنین بیت موازنه \footnote{\lr{Parity Bit}} نیز ارسال نمی‌شود. تنظیمات سریال مربوطه در ویندوز در شکل \ref{ttl-win} آمده است.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./graphics/ttl-win.jpg}
+	\caption{پیکرندی رابط سریال در ویندوز}
+	\label{ttl-win}
+\end{figure}
+
+\subsubsection{پیکربندی درایور}
+درایور برای اینکه به درستی کار کند و در تمام محیط‌ها قابل استفاده باشد باید به صورت 
+\lr{Administrator} اجرا شود. برای این کار ابتدا یک فایل اجرایی می‌سازیم که درون آن با استفاده از کامند‌ها درایور را که یک اسکرپیت پایتو است اجرا می‌کند. سپس یک میانبر \footnote{\lr{shortcut}} برای آن می‌سازیم و آیکون آن را به چیزی ملموس تغییر میدهیم تا در دسکتاپ کاربر نمای خوبی داشته باشد. (شکل \ref{desktop})
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{./graphics/desktop.jpg}
+	\caption{فایل اجرایی درایور روی ویندوز}
+	\label{desktop}
+\end{figure}
 
 \section{جمع‌بندی}
 در این بخش به مرور پروژه و برخی نکات باقی مانده می‌پردازیم.
@@ -335,11 +605,19 @@ def findDistance(self, p1, p2, img, draw=False, r=15, t=3):
 	 پیاده سازی شد، وظیفه این بخش این است که تشخیص دهد دست کاربر الان در چه وضعیتی است. برای این کار با استفاده از کتابخانه \lr{mediapipe} که توسط شرکت گوگل توسعه داده شده است، 20 نقطه از نقاط دست را شناسایی می‌کند و با استفاده از این نقاط وضعیت دست های ما را می‌سنجد، یعنی می‌توان فهمید که کدام دست یا دست ها بالا هستند، فاصله انگشت ها نسبت به هم، تشخیص نوک انگشت اشاره و ...
 
 	 
-	 \item تبدیل کننده حرکات دست به فرمان:
+	 \item تبدیل کننده حرکات دست به فرمان: در فایل
+	 \verb!handler.py!
+از ماژول تشخیص دست استفاده شده است که در یک حلقه بی‌نهایت ابتدا دست تشخیص داده می‌شود. سپس
+با توجه به باز یا بسته بودن انگشتان حالت عملیاتی از بین ۶ حالت مختلف تشخیص داده می‌شود
+و سپس با توجه به اینکه سبابه کجا قرار دارد، فاصله انگشتان چقدر است و ... این حرکات به
+دستورات ورودی و خروجی تفسیر شده و دستور مناسب از طریق رابط سریال همراه با پارامترهای مورد نیاز ارسال می‌شود.
 
 
 	 
-	 \item بخش تبدیل دستورات به فرمان های \lr{IO} رایانه:
+	 \item بخش تبدیل دستورات به فرمان های \lr{IO} رایانه: دستورات تفسیر شده و ارسال شده از
+	 برد در این بخش یعنی درایور تبدیل به حرکات موشواره شده و به سیستم‌عامل منتقل می‌شوند.
+	 همچنین این ماژول در ریسه‌ای \footnote{\lr{Thread}} جدا تفسیر‌های انجام گرفته را برای راحتی کاربر به نمایش می‌گذارد. همچنین این ریسه مسئول ساخت و پیکربندی پورت سریال است که این
+	 پورت به وسیله کاربر از ویژوالایزر انتخاب می‌شود.
 	 
 	 
 \end{enumerate}
@@ -379,12 +657,18 @@ def findDistance(self, p1, p2, img, draw=False, r=15, t=3):
 	\item مسئله دوربین : دوربین فعلی نسبت به سایر دوربین ها از قیمت کمتری برخوردار است، ولی دو تا مشکل دارد، اولی تعداد فریم بر ثانیه است که گاها پایین است و برای حرکت های سریع دست کاربر شاید مشکل ساز شود. مورد دوم هم گستردگی زیادی ندارد یا به عبارتی گسترده \footnote{\lr{Wide}} تصویر برداری نمیکند که این مشکل می‌تواند با استفاده از دوربین ها بهتر حل شود. ولی راه حل ابتکاری می‌تواند استفاده از دو یا چند دوربین به صورت همزمان باشد که در این صورت هم مشکل گسترده نبودن تصاویر حل می‌شود و علاوه بر آن مشکل بزرگ‌تری که تعداد فریم باشد هم تا حدود خوبی برطرف می‌شود.
 \end{itemize}
 
+
+\pagebreak
 \begin{thebibliography}{9}
 \bibitem{pi} صفحه رسمی رزبری‌پای ۳ - \href{https://www.raspberrypi.com/products/raspberry-pi-3-model-b/}{[\lr{link}]}
 
 \bibitem{medipipe} کتاب‌خانه مدیا‌پایپ از گوگل - \href{https://google.github.io/mediapipe/solutions/hands.html}{\lr{[link]}}
 
 \bibitem{cv2} کتاب‌خانه پردازش تصویر \lr{OpenCV} - \href{https://opencv.org/}{\lr{[link]}}
+
+\bibitem{ttl} صفحه رسمی ماژول سریال و درایور آن - \href{https://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&pcid=41}{[\lr{link}]}
+
+\bibitem{gui-osk} رفع مشکل عدم کلیک روی کیبورد مجازی در ویندوز - \href{https://stackoverflow.com/a/57339875/12296966}{[\lr{link}]}
 
 \end{thebibliography}
 \end{document}
