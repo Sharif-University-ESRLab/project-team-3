@@ -15,6 +15,11 @@ import tkinter as tk
 from threading import Thread
 import signal
 from serial.serialutil import SerialException
+import setproctitle
+
+
+# change process name so it can be distinguished in the task manager
+setproctitle.setproctitle('Motion Capture Driver')
 
 wCam, hCam = 320, 240 
 wScr, hScr = pyautogui.size()
@@ -164,6 +169,8 @@ def create_circle(x, y, r, canvasName: tk.Canvas, **kwargs):
 
 class Visualizer(Thread):
     def run(self) -> None:
+        setproctitle.setproctitle('Motion Capture Driver')
+        
         root = tk.Tk()
         self.root = root
 
@@ -203,6 +210,18 @@ class Visualizer(Thread):
         w.bind("<Button-1>", self.update_ports)
         w.pack()
 
+        # context menu on exit
+        m = tk.Menu(root, tearoff=0)
+        m.add_command(label="Exit", command=lambda: exit())
+        
+        def do_popup(event):
+            try:
+                m.tk_popup(event.x_root, event.y_root)
+            finally:
+                m.grab_release()
+        
+        root.bind('<Button-3>', do_popup)
+        
         # Canvas for visualization
         self.canvas = tk.Canvas(root, height= 240 + 20, width= 320 + 20 )
         self.canvas.create_rectangle(10,10,10+320,240 + 10, outline='red')
@@ -215,6 +234,7 @@ class Visualizer(Thread):
     def update_ports(self, e:tk.Event):
         # update serial port list
         ports = [port.name for port in lp.comports()]
+        ports.insert(0, "None")
         menu = self.port_list["menu"]
         menu.delete(0, "end")
         for port in ports:
