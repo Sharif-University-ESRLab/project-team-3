@@ -33,15 +33,15 @@ pyautogui.PAUSE = 0.02
 
 # patterns send from RPi
 patterns = [
-    "^(b)[*]([-]?\d+)[*]([-]?\d+)[*]([-]?\d+)[*]([-]?\d+)$",
-    "^(v)[*]([-]?\d+)[*]([-]?\d+)$",
-    "^(d)$",
-    "^(md)$",
-    "^(mu)$",
-    "^(c)$",
-    "^(r)$",
-    "^(s)[*]([-]?\d+)$",
-    "^p$"
+    "^(b)[*]([-]?\d+)[*]([-]?\d+)[*]([-]?\d+)[*]([-]?\d+)$", # box
+    "^(v)[*]([-]?\d+)[*]([-]?\d+)$",                         # move
+    "^(d)$",                                                 # double click
+    "^(md)$",                                                # mouse down
+    "^(mu)$",                                                # mouse up
+    "^(c)$",                                                 # single click
+    "^(r)$",                                                 # right click
+    "^(s)[*]([-]?\d+)$",                                     # scroll
+    "^p$"                                                    # print screen
 ]
 
 def do_b(params):
