@@ -1,9 +1,4 @@
 from asyncio.log import logger
-from cProfile import label
-from glob import glob
-from socket import timeout
-from cv2 import exp
-from matplotlib.pyplot import fill
 import pyautogui
 import numpy as np
 import time
@@ -16,7 +11,7 @@ from threading import Thread
 import signal
 from serial.serialutil import SerialException
 import setproctitle
-
+import os
 
 # change process name so it can be distinguished in the task manager
 setproctitle.setproctitle('Motion Capture Driver')
@@ -41,7 +36,7 @@ patterns = [
     "^(c)$",                                                 # single click
     "^(r)$",                                                 # right click
     "^(s)[*]([-]?\d+)$",                                     # scroll
-    "^p$"                                                    # print screen
+    "^(p)$"                                                    # print screen
 ]
 
 def do_b(params):
@@ -50,7 +45,13 @@ def do_b(params):
     assert len(coords) == 4
     global visualizer
     visualizer.canvas.delete(visualizer.hand_rect)
-    visualizer.hand_rect = visualizer.canvas.create_rectangle(*coords)
+    # coords = x1,y1 x2, y2
+    visualizer.hand_rect = visualizer.canvas.create_rectangle(
+        320 - coords[0],
+        coords[1],
+        320 - coords[2],
+        coords[3]
+    )
 
 def do_md(_):
     # pinch - Mouse Down - for drag and drop
@@ -83,7 +84,7 @@ def do_v(params):
     # visualize the move
     global visualizer
     visualizer.canvas.delete(visualizer.pointer)
-    visualizer.pointer = create_circle(x1, y1, 3, visualizer.canvas, fill='blue')
+    visualizer.pointer = create_circle(320 - x1, y1, 3, visualizer.canvas, fill='blue')
     plocX, plocY = clocX, clocY
 
 
@@ -104,11 +105,12 @@ def do_r(_):
 
 def do_s(params):
     # scroll in the opposite direction
-    pyautogui.scroll(-int(params[0]))
+    pyautogui.scroll(-int(params[0])*10)
 
 
-def do_p(params):
+def do_p(_):
     # take print screen
+    mb.showinfo("Screen Shot", "Screenshot is available in your clipboard")
     pyautogui.press("prtsc")
 
 
@@ -122,7 +124,7 @@ def get_serial_line() -> str:
                 cm = str(ser.readline(), 'utf-8')
                 logger.log(0, cm)
                 print(cm)
-                return cm
+                return cm.strip()
             except:
                 return None
         else:
@@ -212,7 +214,7 @@ class Visualizer(Thread):
 
         # context menu on exit
         m = tk.Menu(root, tearoff=0)
-        m.add_command(label="Exit", command=lambda: exit())
+        m.add_command(label="Exit", command=lambda: os._exit(0))
         
         def do_popup(event):
             try:
@@ -247,7 +249,7 @@ class Visualizer(Thread):
                 ser = serial.Serial(new_port, baudrate = 9600, parity=serial.PARITY_NONE,
                         stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
                 if ser.isOpen():
-                    print("Serial Connected")
+                    mb.showinfo("Serial Connected", "Serial Connected Successfully")
                     self.port.set(new_port)
                     return
                     
@@ -261,6 +263,12 @@ class Visualizer(Thread):
         self.reset_ports()
     
     def reset_ports(self):
+        try:
+            global ser
+            if ser:
+                ser.close()
+        except:
+            pass
         self.port.set("None")
         menu = self.port_list["menu"]
         menu.delete(0, "end")
