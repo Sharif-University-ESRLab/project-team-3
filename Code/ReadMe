@@ -1,1 +1,7 @@
 This folder should contain the source code of your project.
+
+--------
+
+Vision Control: RPi Part of the project. This code is deployed on Raspberry Pi and takes control of the Camera!
+
+Driver: A simple python script which interoperate  the serial commands received from RPi.
